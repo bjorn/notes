@@ -611,7 +611,7 @@ void MainWindow::setupTextEdit()
                          "QScrollBar:hover { background-color: rgb(217, 217, 217);}"
                          "QScrollBar::add-line:vertical { width:0px; height: 0px; subcontrol-position: bottom; subcontrol-origin: margin; }  "
                          "QScrollBar::sub-line:vertical { width:0px; height: 0px; subcontrol-position: top; subcontrol-origin: margin; }"
-                         ).arg("27", "27");
+                         ).arg("12", "12");
 
     m_textEdit->setStyleSheet(ss);
 
@@ -2852,6 +2852,13 @@ void MainWindow::setUseNativeWindowFrame(bool useNativeWindowFrame)
                                                      policy.horizontalPolicy(),
                                                      policy.verticalPolicy());
     ui->verticalLayout_textEdit->invalidate();
+
+    // Adjust space to left and right of text editor
+    ui->horizontalSpacer_leftNewNoteButton->changeSize(useNativeWindowFrame ? ui->verticalSpacer_upScrollArea->sizeHint().height() : 24,
+                                                       ui->horizontalSpacer_leftNewNoteButton->sizeHint().height());
+    ui->horizontalSpacer_rightTrashButton->changeSize(useNativeWindowFrame ? ui->verticalSpacer_upScrollArea->sizeHint().height() : 23,
+                                                      ui->horizontalSpacer_rightTrashButton->sizeHint().height());
+    ui->horizontalLayout_textEdit->invalidate();
 
     setMainWindowVisibility(true);
 }
